@@ -14,7 +14,16 @@ const bookById = await book.findByPk(id);
 return bookById;
 };
 
+// Exercício 9: No service BooksService crie um método create que recebe um objeto com os atributos title, author, pageQuantity e salve um novo livro utilizando o model Book.
+
+const createBook = async (dataBook) => {
+const newBook = await book.create(dataBook);
+
+return newBook;
+};
+
 module.exports = {
   getAll,
   getById,
+  createBook,
 };

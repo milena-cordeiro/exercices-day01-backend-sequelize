@@ -1,4 +1,4 @@
-const { getAll, getById } = require('../service/book.service');
+const { getAll, getById, createBook } = require('../service/book.service');
 
 // Exercício 4: Crie um controller BooksController com o método getAll para retornar a lista de livros por meio do método getAll de BookService.
 const listAll = async (req, res) => {
@@ -18,7 +18,22 @@ const listById = async (req, res) => {
   res.status(200).json(book);
 };
 
+// Exercício 10: No controller BooksController crie o método create sendo um middleware que recebe os atributos title, author, pageQuantity do body da requisição e salve os dados por meio do service.
+
+const createAbook = async (req, res) => {
+  try {
+    const dataBook = req.body;
+
+    const newBook = await createBook(dataBook);
+
+    return res.status(201).json(newBook);
+  } catch (error) {
+    res.status(500).json({ message: 'algo deu ruim' });
+  }
+};
+
 module.exports = {
   listAll,
   listById,
+  createAbook,
 };

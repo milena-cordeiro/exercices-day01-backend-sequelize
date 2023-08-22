@@ -11,4 +11,6 @@ app.get('/books', BooksController.listAll);
 
 app.get('/books/:id', BooksController.listById);
 
+app.post('/books', BooksController.createAbook);
+
 module.exports = app;
