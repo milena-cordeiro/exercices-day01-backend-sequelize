@@ -13,4 +13,6 @@ app.get('/books/:id', BooksController.listById);
 
 app.post('/books', BooksController.createAbook);
 
+app.put('/books/:id', BooksController.updateABook);
+
 module.exports = app;

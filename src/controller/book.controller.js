@@ -1,4 +1,4 @@
-const { getAll, getById, createBook } = require('../service/book.service');
+const { getAll, getById, createBook, updateBook } = require('../service/book.service');
 
 // Exercício 4: Crie um controller BooksController com o método getAll para retornar a lista de livros por meio do método getAll de BookService.
 const listAll = async (req, res) => {
@@ -32,8 +32,23 @@ const createAbook = async (req, res) => {
   }
 };
 
+// Exercício 13: No controller BooksController crie o método update sendo um middleware que recebe o id como parâmetro de rota e os atributos title, author, pageQuantity do body da requisição e salve os dados por meio do service. A requisição deve retornar o status 200 e a mensagem ‘Book updated!’. Se o livro não for encontrado retornar a mensagem ‘Book not found!’.
+const updateABook = async (req, res) => {
+try {
+  const dataBook = req.body;
+  const { id } = req.params;
+
+  await updateBook(id, dataBook);
+
+  return res.status(200).json({ message: 'Book updated!' });
+} catch (error) {
+  res.status(404).json({ message: 'Book not found!' });
+}
+};
+
 module.exports = {
   listAll,
   listById,
   createAbook,
+  updateABook,
 };

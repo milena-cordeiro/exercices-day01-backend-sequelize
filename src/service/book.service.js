@@ -15,15 +15,25 @@ return bookById;
 };
 
 // Exercício 9: No service BooksService crie um método create que recebe um objeto com os atributos title, author, pageQuantity e salve um novo livro utilizando o model Book.
-
 const createBook = async (dataBook) => {
 const newBook = await book.create(dataBook);
 
 return newBook;
 };
 
+// Exercício 12: No service BooksService crie um método update que recebe dois parâmetros: o id do livro a ser alterado e um objeto com os atributos title, author, pageQuantity e atualize o livro utilizando o model Book
+const updateBook = async (id, dataBook) => {
+  const [updatedBook] = await book.update(
+dataBook,
+{ where: { id } },
+  );
+
+  return updatedBook;
+};
+
 module.exports = {
   getAll,
   getById,
   createBook,
+  updateBook,
 };
