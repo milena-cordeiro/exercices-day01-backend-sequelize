@@ -1,3 +1,12 @@
+/* eslint-disable global-require */
+/* eslint-disable arrow-body-style */
+/* eslint-disable arrow-parens */
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable no-path-concat */
+/* eslint-disable prefer-template */
+/* eslint-disable import/newline-after-import */
+/* eslint-disable lines-around-directive */
+/* eslint-disable strict */
 'use strict';
 
 const fs = require('fs');
