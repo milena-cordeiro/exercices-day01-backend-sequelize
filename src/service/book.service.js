@@ -31,9 +31,16 @@ dataBook,
   return updatedBook;
 };
 
+// Exercício 15: No service BooksService crie um método remove que recebe o id do livro a ser removido e remova o mesmo utilizando o model Book.
+const deleteBook = async (id) => {
+  const deletedBook = await book.destroy({ where: { id } });
+  return deletedBook;
+};
+
 module.exports = {
   getAll,
   getById,
   createBook,
   updateBook,
+  deleteBook,
 };

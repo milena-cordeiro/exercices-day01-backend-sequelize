@@ -1,4 +1,4 @@
-const { getAll, getById, createBook, updateBook } = require('../service/book.service');
+const { getAll, getById, createBook, updateBook, deleteBook } = require('../service/book.service');
 
 // Exercício 4: Crie um controller BooksController com o método getAll para retornar a lista de livros por meio do método getAll de BookService.
 const listAll = async (req, res) => {
@@ -46,9 +46,24 @@ try {
 }
 };
 
+// Exercício 16: No controller BooksController crie o método remove sendo um middleware que recebe o id como parâmetro de rota e remova o livro por meio do service.
+const removeBook = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const removedBook = await deleteBook(id);
+
+    if (!removedBook) return res.status(404).json({ message: 'not found' });
+
+    return res.status(200).json({ message: 'book removed' });
+  } catch (error) {
+    res.status(500).json({ message: 'algo deu ruim' });
+  }
+};
+
 module.exports = {
   listAll,
   listById,
   createAbook,
   updateABook,
+  removeBook,
 };
