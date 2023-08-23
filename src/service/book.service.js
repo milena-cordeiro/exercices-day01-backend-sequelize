@@ -2,7 +2,9 @@ const { book } = require('../models');
 
 // Exercício 3: Crie um service BooksService com o método getAll para retornar uma lista de livros por meio do model Book.
 const getAll = async () => {
-  const books = await book.findAll();
+  const books = await book.findAll({
+    order: [['title', 'ASC']],
+  });
 
   return books;
 };
@@ -39,7 +41,9 @@ const deleteBook = async (id) => {
 
 // BÔNUS - exercicio 2 - buscar uma lista de livros por author;
 const getByAuthor = async (author) => {
-  const booksByAuthor = await book.findAll({ where: { author } });
+  const booksByAuthor = await book.findAll({ 
+    where: { author },
+    order: [['title', 'ASC']] });
 
   return booksByAuthor;
 };
@@ -50,5 +54,5 @@ module.exports = {
   createBook,
   updateBook,
   deleteBook,
-  getByAuthor,
+  getByAuthor,  
 };
