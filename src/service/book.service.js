@@ -37,10 +37,18 @@ const deleteBook = async (id) => {
   return deletedBook;
 };
 
+// BÔNUS - exercicio 2 - buscar uma lista de livros por author;
+const getByAuthor = async (author) => {
+  const booksByAuthor = await book.findAll({ where: { author } });
+
+  return booksByAuthor;
+};
+
 module.exports = {
   getAll,
   getById,
   createBook,
   updateBook,
   deleteBook,
+  getByAuthor,
 };

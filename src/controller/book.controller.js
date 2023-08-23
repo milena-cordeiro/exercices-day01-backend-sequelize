@@ -1,7 +1,15 @@
-const { getAll, getById, createBook, updateBook, deleteBook } = require('../service/book.service');
+const { getAll, getById, createBook, updateBook,
+   deleteBook, getByAuthor } = require('../service/book.service');
 
 // Exercício 4: Crie um controller BooksController com o método getAll para retornar a lista de livros por meio do método getAll de BookService.
 const listAll = async (req, res) => {
+const { author } = req.query;
+
+if (author) {
+  const booksByAuthor = await getByAuthor(author);
+
+  return res.status(200).json(booksByAuthor);
+}
   const books = await getAll();
 
   res.status(200).json(books);
@@ -17,6 +25,20 @@ const listById = async (req, res) => {
 
   res.status(200).json(book);
 };
+// BÔNUS
+// const getBooksByAuthor = async (req, res) => {
+//   try {
+//     const { author } = req.params;
+
+//     const booksByAuthor = await getByAuthor(author);
+
+//     if (!booksByAuthor) return res.status(404).json({ message: 'author not found' });
+
+//     return res.status(200).json(booksByAuthor);
+//   } catch (error) {
+//     res.status(500).json({ message: 'deu ruim' });
+//   }
+// };
 
 // Exercício 10: No controller BooksController crie o método create sendo um middleware que recebe os atributos title, author, pageQuantity do body da requisição e salve os dados por meio do service.
 
